@@ -1,5 +1,6 @@
 import { Calculator } from "./calculator";
 import { test, describe, expect, assert } from "vitest";
+import { data } from "autoprefixer";
 
 describe("check basic operations", () => {
 	test("pressButton('1') changes currentValue to '1'", () => {
@@ -98,4 +99,49 @@ describe("test digit button + operator interactions effect on display", () => {
 	});
 });
 
-describe("random tests, nothing to do with the calculator", () => {});
+function randomWithinRange(n: number, m: number) {
+	return Math.random() * (m - n) + n;
+}
+
+describe("random tests, nothing to do with the calculator", () => {
+	test("add something to my fakeDB", () => {
+		const fakeDB: any[] = [];
+		// add something
+		fakeDB.push({ random: "example" });
+		// check if it was added to DB by querying the thing and seeing if it exists
+		expect(fakeDB[0]).toBeDefined();
+	});
+
+	test("randomWithinRange(0,20) < 20 and > 0", () => {
+		const result = randomWithinRange(0, 20);
+		expect(result).toBeLessThanOrEqual(20);
+		expect(result).toBeGreaterThanOrEqual(0);
+	});
+
+	test("randomWithinRange(7, 23) < 23 and > 7", () => {
+		const result = randomWithinRange(7, 23);
+		console.log(result);
+		expect(result).toBeLessThanOrEqual(23);
+		expect(result).toBeGreaterThanOrEqual(7);
+	});
+
+	test("check if fakeDB connects", () => {
+		// fake database query to check for connection
+		const databaseConnects = new Promise((resolve, reject) => {
+			resolve(true);
+		});
+
+		expect(databaseConnects).resolves.toEqual(true);
+	});
+
+	test("check if coffee pot is turned off after 8pm", async () => {
+		// fake database query to check for connection
+		const coffeePotTurnedOn = new Promise((resolve, reject) => {
+			resolve(false);
+		});
+
+		const response = await coffeePotTurnedOn;
+
+		expect(response).toEqual(false);
+	});
+});
